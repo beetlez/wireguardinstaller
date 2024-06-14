@@ -110,7 +110,8 @@ function installQuestions() {
 	echo ""
 
 	# Detect public IPv4 or IPv6 address and pre-fill for the user
-	SERVER_PUB_IP=$(ip -4 addr | sed -ne 's|^.* inet \([^/]*\)/.* scope global.*$|\1|p' | awk '{print $1}' | head -1)
+	#SERVER_PUB_IP=$(ip -4 addr | sed -ne 's|^.* inet \([^/]*\)/.* scope global.*$|\1|p' | awk '{print $1}' | head -1)
+        SERVER_PUB_IP="$(curl http://checkip.amazonaws.com)"
 	if [[ -z ${SERVER_PUB_IP} ]]; then
 		# Detect public IPv6 address
 		SERVER_PUB_IP=$(ip -6 addr | sed -ne 's|^.* inet6 \([^/]*\)/.* scope global.*$|\1|p' | head -1)
@@ -136,7 +137,8 @@ function installQuestions() {
 	done
 
 	# Generate random number within private ports range
-	RANDOM_PORT=$(shuf -i49152-65535 -n1)
+	#RANDOM_PORT=$(shuf -i49152-65535 -n1)
+        RANDOM_PORT="51194"
 	until [[ ${SERVER_PORT} =~ ^[0-9]+$ ]] && [ "${SERVER_PORT}" -ge 1 ] && [ "${SERVER_PORT}" -le 65535 ]; do
 		read -rp "Server WireGuard port [1-65535]: " -e -i "${RANDOM_PORT}" SERVER_PORT
 	done

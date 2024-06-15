@@ -180,7 +180,7 @@ function installQuestions() {
 
 	ALLOWED_IPS="0.0.0.0/0,::/0"
 
-        echo "SERVER_PUB_IP: ${SERVER_PRIV_KEY}"
+        echo "SERVER_PUB_IP: ${SERVER_PUB_IP}"
 	echo "SERVER_NIC: ${SERVER_NIC}"
 	echo "SERVER_WG_NIC: ${SERVER_WG_NIC}"
 	echo "SERVER_WG_IPV4: ${SERVER_WG_IPV4}"
